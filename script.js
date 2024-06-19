@@ -1,5 +1,6 @@
 // Array di esempio con i risultati della ricerca
 const results = [
+  { title: '2662', url: 'https://www.example.com/lorem-ipsum' },
   { title: 'Lorem Ipsum', url: 'https://www.example.com/lorem-ipsum' },
   { title: 'Dolor Sit Amet', url: 'https://www.example.com/dolor-sit-amet' },
   { title: 'Consectetur Adipiscing', url: 'https://www.example.com/consectetur-adipiscing' },
