@@ -1,5 +1,15 @@
-// Array di esempio con i risultati della ricerca
-const results = [
+// script.js
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+
+searchForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // Evita il comportamento predefinito del form (il submit)
+
+  const searchTerm = searchInput.value.trim(); // Ottieni il testo di ricerca e rimuovi spazi iniziali e finali
+
+  // Simulazione dei risultati della ricerca (puoi sostituire con la tua logica di ricerca)
+  const results = [
   { title: 'Gabriel Jones', url: 'http://dev-gabriel-jones.pantheonsite.io/' },
   { title: 'tecknotecait', url: 'https://www.roblox.com/users/2257791245/profile?friendshipSourceType=PlayerSearch' },
   { title: 'fordev19', url: 'https://www.roblox.com/users/234037904/profile?friendshipSourceType=PlayerSearch' },
@@ -34,41 +44,19 @@ const results = [
   //{ title: '2662', url: 'https://www.example.com/lorem-ipsum' },
 ];
 
-// Otteniamo i riferimenti agli elementi HTML che ci interessano
-const searchForm = document.getElementById('searchForm');
-const searchInput = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
-
-// Aggiungiamo l'evento di ascolto sul form per la ricerca
-searchForm.addEventListener('submit', function(event) {
-  event.preventDefault(); // Evitiamo il comportamento predefinito del form (submit)
-
-  const searchTerm = searchInput.value.trim().toLowerCase(); // Ottieni il termine di ricerca, rimuovi spazi iniziali/finali e converti in minuscolo
-
-  // Filtriamo i risultati in base al termine di ricerca
-  const filteredResults = results.filter(result => {
-    return result.title.toLowerCase().includes(searchTerm);
-  });
-
-  // Puliamo i risultati precedenti
+  // Pulisci i risultati precedenti
   searchResults.innerHTML = '';
 
-  // Mostrare i risultati filtrati
-  if (filteredResults.length > 0) {
-    filteredResults.forEach(result => {
-      const resultItem = document.createElement('div');
-      const link = document.createElement('a');
-      link.href = result.url;
-      link.textContent = result.title;
-      link.style.display = "block"; // Mostra ogni link su una nuova riga
-      resultItem.appendChild(link);
-      searchResults.appendChild(resultItem);
-    });
-  } else {
-    const noResults = document.createElement('div');
-    noResults.textContent = 'Nessun risultato trovato.';
-    searchResults.appendChild(noResults);
-  }
+  // Mostra i risultati della ricerca
+  results.forEach(result => {
+    const resultItem = document.createElement('div');
+    const link = document.createElement('a');
+    link.href = result.url;
+    link.textContent = result.title;
+    link.target = '_blank'; // Apri il link in una nuova finestra o scheda
+    resultItem.appendChild(link);
+    searchResults.appendChild(resultItem);
+  });
 
   // Resetta il campo di input
   searchInput.value = '';
